@@ -3,7 +3,7 @@ import React from 'react';
 const Landing = () => {
     return (
         <>
-            <div class="hero h-screen lg:h-[60vh] bg-accent mt-16">
+            <div class="hero h-screen lg:h-[60vh] relative z-10 bg-accent mt-16">
                 <div class="hero-content flex-col lg:flex-row">
                     <div data-aos="fade-right " data-aos-delay="200" data-aos-duration="3000">
                         <p className='text-xl'>Best Quality</p>
