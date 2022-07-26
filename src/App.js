@@ -1,47 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
-import Navbar from './components/Navbar';
-import Home from './pages/Home/Home'
-import About from './pages/About'
-import Contact from './pages/Contact'
-import Login from './pages/Login'
-import Service from './pages/Service'
-import {
-  Routes,
-  Route,
-} from "react-router-dom";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { useEffect } from 'react';
-import PrivateRoute from './authentication/PrivateRoute';
-import Dashboard from './pages/Dashboard/Dashboard';
-import AdminRoute from './authentication/AdminRoute';
+import Navbar from "./components/Navbar";
+// import { publicRoute } from "./routes/publicRoutes";
+import { Route, Routes } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import PrivateRoute from "./authentication/PrivateRoute";
+// import { privateRoutes } from "../routes/privateRoutes";
+// import AdminRoute from "./authentication/AdminRoute";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import AddAdmin from "./pages/Dashboard/AddAdmin";
+import AddService from "./pages/Dashboard/AddService";
+import Home from "./pages/Home/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Login from "./pages/Login";
+// import Services from "./pages/Services";
+
 function App() {
   useEffect(() => {
-    AOS.init()
-  }, [])
+    AOS.init();
+  }, []);
+
   return (
-    <div >
-      <Navbar>
-        <Routes>
-          <Route path='/' element={<Home></Home>}></Route>
-          <Route path='/about' element={<PrivateRoute>
-            <About></About>
-          </PrivateRoute>}></Route>
-          <Route path='/service' element={<PrivateRoute>
-            <Service></Service>
-          </PrivateRoute>}></Route>
-          <Route path='/dashboard' element={<AdminRoute>
-            <Dashboard></Dashboard>
-          </AdminRoute>}></Route>
-          <Route path='/login' element={<Login></Login>}></Route>
-          <Route path='/contact' element={<Contact></Contact>}></Route>
-        </Routes>
+    <Navbar>
+      {/* <Routes>
+        {publicRoute.map(({ path, Component }, index) => (
+          <Route key={index} path={path} element={<Component />} />
+        ))}
+        <Route element={<PrivateRoute />}>
+          {privateRoutes.map(({ path, Component }, index) => (
+            <Route key={index} path={path} element={<Component />} />
+          ))}
+        </Route>
+        <Route element={<AdminRoute />}>
+          <Route path='/dashboard' element={<Dashboard />}>
+            <Route path='add-admin' element={<AddAdmin />} />
+            <Route path='add-service' element={<AddService />} />
+          </Route>
+        </Route>
+      </Routes> */}
 
-      </Navbar>
+      {/* Same as above but in a break down manners */}
 
+      <Routes>
+        {/* PublicRoutes */}
 
-    </div>
+        <Route path='/' element={<Home />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/login' element={<Login />} />
+
+        {/* Private Routes  */}
+
+        <Route element={<PrivateRoute />}>
+          {/* <Route path='/services' element={<Services />} /> */}
+          <Route path='/about' element={<About />} />
+        </Route>
+
+        <Route path='/dashboard' element={<Dashboard />}>
+          {/* root/dashboard/add-admin */}
+          <Route path='add-admin' element={<AddAdmin />} />
+          {/* root/dashboard/add-service */}
+          <Route path='add-service' element={<AddService />} />
+        </Route>
+      </Routes>
+    </Navbar>
   );
 }
 

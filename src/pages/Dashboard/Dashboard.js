@@ -1,12 +1,12 @@
-import React from 'react';
-import DashboardSidebar from '../../components/DashboardSidebar';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import DashboardSidebar from "../../components/DashboardSidebar";
 
 const Dashboard = () => {
     return (
         <DashboardSidebar>
-            <h1>Clean Co</h1>
+            <Outlet />
         </DashboardSidebar>
-
     );
 };
 
